@@ -1,7 +1,5 @@
 import { ComponentFactory, Inject, Injectable, Injector, NgModuleFactory, NgModuleFactoryLoader } from '@angular/core'
-import { Observable } from 'rxjs/Observable';
-import { fromPromise as ObservableFromPromise } from 'rxjs/observable/fromPromise';
-import { _throw as ObservableThrow } from 'rxjs/observable/throw';
+import { Observable, from, throwError } from 'rxjs';
 
 import {
   DYNAMIC_COMPONENT,
@@ -25,13 +23,13 @@ export class DynamicComponentLoader {
     const manifest = this.manifests
       .find(m => m.componentId === componentId);
     if (!manifest) {
-      return ObservableThrow(`DynamicComponentLoader: Unknown componentId "${componentId}"`);
+      return throwError(`DynamicComponentLoader: Unknown componentId "${componentId}"`);
     }
 
     const path = manifest.loadChildren
 
     const p = this.load<T>(path, componentId, injector)
-    return ObservableFromPromise(p)
+    return from(p)
   }
 
   load<T>(path: string, componentId: string, injector?: Injector): Promise<ComponentFactory<T>> {

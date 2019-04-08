@@ -1,32 +1,25 @@
 {
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": "tslint:recommended",
   "rulesDirectory": [
     "codelyzer"
   ],
   "rules": {
-    // TypeScript
+    "array-type": false,
     "arrow-parens": false,
+    "deprecation": {
+      "severity": "warn"
+    },
     "import-blacklist": [
       true,
-      "rxjs",
       "rxjs/Rx"
     ],
-    "indent": [
-      true,
-      "spaces",
-      2
-    ],
     "interface-name": false,
+    "max-classes-per-file": false,
     "max-line-length": [
       true,
       140
     ],
-    "member-access": [
-      true,
-      "no-public"
-    ],
+    "member-access": false,
     "member-ordering": [
       true,
       {
@@ -38,6 +31,7 @@
         ]
       }
     ],
+    "no-consecutive-blank-lines": false,
     "no-console": [
       true,
       "debug",
@@ -46,87 +40,36 @@
       "timeEnd",
       "trace"
     ],
-    "no-duplicate-imports": true,
     "no-empty": false,
     "no-inferrable-types": [
       true,
       "ignore-params"
     ],
-    "no-null-keyword": true,
+    "no-non-null-assertion": true,
+    "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
+    "no-use-before-declare": true,
+    "no-var-requires": false,
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
     "object-literal-sort-keys": false,
+    "ordered-imports": false,
     "quotemark": [
       true,
       "single"
     ],
-    "variable-name": [
-      true,
-      "check-format",
-      "allow-leading-underscore",
-      "ban-keywords"
-    ],
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-module",
-      "check-operator",
-      "check-rest-spread",
-      "check-separator",
-      "check-type",
-      "check-typecast",
-      "check-type-operator",
-      "check-preblock"
-    ],
-
-    // Codelyzer
-    "angular-whitespace": [
-      true,
-      "check-interpolation",
-      // TODO: readd after https://github.com/mgechev/codelyzer/issues/412
-      // "check-pipe",
-      "check-semicolon"
-    ],
-    "banana-in-box": true,
-    "component-class-suffix": [
-      true,
-      "Component",
-      "View"
-    ],
-    "directive-class-suffix": true,
-    "no-attribute-parameter-decorator": true,
-    "no-forward-ref": true,
-    "no-input-rename": true,
+    "trailing-comma": false,
     "no-output-on-prefix": true,
-    "no-output-rename": true,
-    "use-host-property-decorator": true,
     "use-input-property-decorator": true,
-    "use-life-cycle-interface": true,
     "use-output-property-decorator": true,
-    "use-pipe-decorator": true,
+    "use-host-property-decorator": true,
+    "no-input-rename": true,
+    "no-output-rename": true,
+    "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-
-    // Codelyzer (expect an override)
-    "component-selector": [
-      true,
-      "element",
-      [
-        "app"
-      ],
-      "kebab-case"
-    ],
-    "directive-selector": [
-      true,
-      "attribute",
-      [
-        "app"
-      ],
-      "camelCase"
-    ],
-    "pipe-naming": [
-      true,
-      "camelCase",
-      "app"
-    ]
+    "component-class-suffix": true,
+    "directive-class-suffix": true
   }
 }
