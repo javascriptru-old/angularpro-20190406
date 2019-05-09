@@ -8,7 +8,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build": "ng build --prod && ng run ssr:server --output-hashing=none && cp server.js ./dist/server.js",
-    "serve": "node dist/server.js"
+    "serve": "node dist/server.js",
+    "perf-test": "artillery quick -d 180 -r 5 http://localhost:4000"
   },
   "private": true,
   "dependencies": {

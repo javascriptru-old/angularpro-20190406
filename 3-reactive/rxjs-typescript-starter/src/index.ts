@@ -1,6 +1,8 @@
-import { of, combineLatest, timer } from 'rxjs';
+import { of, combineLatest, timer, SchedulerAction, Subscription } from 'rxjs';
 import { merge, observeOn } from 'rxjs/operators';
 import { VirtualAction, VirtualTimeScheduler, queueScheduler, asyncScheduler, asapScheduler } from 'rxjs';
+import { AsyncScheduler } from 'rxjs/internal/scheduler/AsyncScheduler';
+import { AsyncAction } from 'rxjs/internal/scheduler/AsyncAction';
 
 // timer(0, 1000).subscribe({
 //   next: (value: any ) => console.log('Next:', value),
@@ -44,3 +46,15 @@ vts.flush();
 //   error: (error) => console.log('Error', error)
 // });
 
+export class MyScheduler extends AsyncScheduler {
+  public schedule<T>(
+    work: (this: SchedulerAction<T>, state?: T) => void,
+    delay: number = 0,
+    state?: T
+  ): Subscription {
+    return super.schedule(work, delay + 5000, state);
+  }
+}
+
+const myScheduler = new MyScheduler(AsyncAction);
+of(1).pipe(observeOn(myScheduler)).subscribe(v => console.log(v));
